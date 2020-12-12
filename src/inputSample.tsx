@@ -5,7 +5,7 @@ function InputSample() {
     name: '',
     nickname: '',
   });
-  const nameInput = useRef();
+  const nameInput = useRef<HTMLInputElement>(null);
 
   const { name, nickname } = inputs;
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,6 +21,7 @@ function InputSample() {
       name: '',
       nickname: '',
     });
+    if (!nameInput.current) return;
     nameInput.current.focus();
   };
 
