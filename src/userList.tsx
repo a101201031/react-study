@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 
-export interface UserTypes {
+interface UserTypes {
   id: number;
   username: string;
   email: string;
-  active: boolean;
+  active?: boolean;
 }
 
 interface UserProps {
