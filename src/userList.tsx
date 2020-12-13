@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export interface UserTypes {
   id: number;
@@ -19,20 +19,27 @@ interface UserListProps {
   onToggle: (id: number) => void;
 }
 
-function User({ user, onRemove, onToggle }: UserProps) {
+const User = React.memo(function User({ user, onRemove, onToggle }: UserProps) {
+  useEffect(() => {
+    console.log('컴포넌트 만들기');
+    return () => {
+      console.log('컴포넌트 수정 전');
+    };
+  }, [user]);
   return (
     <div>
       <b
         style={{ cursor: 'pointer', color: user.active ? 'green' : 'black' }}
         onClick={() => onToggle(user.id)}
       >
-        {user.username}{' '}
+        {user.username}
       </b>
+      &nbsp;
       <span>({user.email})</span>
       <button onClick={() => onRemove(user.id)}>삭제</button>
     </div>
   );
-}
+});
 
 function UserList({ users, onRemove, onToggle }: UserListProps) {
   return (
@@ -49,4 +56,4 @@ function UserList({ users, onRemove, onToggle }: UserListProps) {
   );
 }
 
-export default UserList;
+export default React.memo(UserList);

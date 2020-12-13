@@ -27,4 +27,4 @@ function CreateUser({ username, email, onChange, onCreate }: Props) {
   );
 }
 
-export default CreateUser;
+export default React.memo(CreateUser);
